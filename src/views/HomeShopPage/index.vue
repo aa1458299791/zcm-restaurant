@@ -466,6 +466,7 @@ export default {
   //  width: 100%;
   // height: 100%;
   padding: 10px;
+  overflow-x: hidden;
   //   margin-bottom: 100px;
   // 年度对比
   .year_contrast {

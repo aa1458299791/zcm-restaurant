@@ -50,6 +50,7 @@
 import SIdentify from './components/SCanvas'
 
 import { Toast } from 'vant' // 轻提示
+
 export default {
   name: 'LoginPage',
   components: {
@@ -67,6 +68,7 @@ export default {
       path: '/welcome' // 登录路由地址
     }
   },
+
   methods: {
     // 点击登录
     loginSubmit() {
@@ -79,6 +81,15 @@ export default {
         this.password === '123456' &&
         this.identifyCode === this.verificationCode
       ) {
+        // *******生成token* 一般是后端生成，这里我在前端生成给你们*****
+        const Base64 = require('js-base64').Base64
+        const secretKey = 'Xiaoming' // 秘钥
+        let token = `${this.value}-${this.password}||${secretKey}`
+        token = Base64.encode(token) // 加密
+        token = this.$md5(token) // 二次加密
+        localStorage.setItem('token', token) // 把token存到本地缓存当中  setItem添加
+        //  console.log(token)
+        // ****************
         // console.log('登录')
         Toast.success('登录成功')
         this.$router.push({
@@ -117,6 +128,7 @@ export default {
 .login {
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   // 登录信息
   .login_info {
     padding: 15px;

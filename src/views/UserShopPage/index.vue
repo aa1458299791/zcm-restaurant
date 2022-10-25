@@ -108,6 +108,8 @@ export default {
         message: '确定要退出登录吗？'
       })
         .then(() => {
+          // 退出登录移除token     removeItem删除
+          localStorage.removeItem('token')
           // on confirm
           this.$router.push({
             path: '/'
@@ -124,6 +126,7 @@ export default {
 <style lang="scss" scoped>
 .user_page {
   padding: 10px;
+  padding-bottom: 100px;
   // 底部
   .bottom {
     margin-top: 100px;
